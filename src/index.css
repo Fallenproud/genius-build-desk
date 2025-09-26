@@ -2,41 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* AI Code IDE Playground Design System - Dark Modern Theme
+All colors MUST be HSL. Professional coding environment with purple/indigo accent system.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Core IDE Background System */
+    --background: 260 15% 7%;           /* Deep dark background #0D0C12 */
+    --foreground: 0 0% 98%;             /* Pure white text */
+    
+    /* Surface & Panel System */
+    --card: 260 20% 8%;                 /* Panel background - slightly lighter */
+    --card-foreground: 0 0% 95%;        /* Panel text */
+    
+    --popover: 260 25% 6%;              /* Overlay background */
+    --popover-foreground: 0 0% 98%;     /* Overlay text */
+    
+    /* IDE Accent System - Purple/Indigo */
+    --primary: 262 80% 60%;             /* Primary purple #8B5CF6 */
+    --primary-foreground: 0 0% 100%;    /* White on primary */
+    --primary-glow: 262 100% 75%;       /* Lighter purple for glows */
+    
+    --secondary: 225 80% 65%;           /* Secondary blue #3B82F6 */
+    --secondary-foreground: 0 0% 100%;  /* White on secondary */
+    
+    /* Muted & Subtle Elements */
+    --muted: 260 10% 15%;               /* Subtle backgrounds */
+    --muted-foreground: 220 10% 65%;    /* Subtle text */
+    
+    --accent: 262 50% 20%;              /* Accent backgrounds */
+    --accent-foreground: 262 80% 85%;   /* Accent text */
+    
+    /* Status & Feedback */
+    --destructive: 0 75% 60%;           /* Error red */
+    --destructive-foreground: 0 0% 100%;
+    
+    --success: 120 60% 50%;             /* Success green */
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 45 90% 60%;              /* Warning yellow */
+    --warning-foreground: 45 90% 10%;
+    
+    /* Interactive Elements */
+    --border: 260 20% 20%;              /* Default borders */
+    --input: 260 20% 12%;               /* Input backgrounds */
+    --ring: 262 80% 60%;                /* Focus rings */
+    
+    /* IDE Specific Colors */
+    --editor-bg: 260 20% 8%;            /* Code editor background */
+    --editor-selection: 262 50% 25%;    /* Code selection */
+    --editor-line: 260 15% 15%;         /* Line highlights */
+    
+    /* Glass Effects */
+    --glass-bg: 260 20% 10%;            /* Glass overlay background */
+    --glass-border: 0 0% 100%;          /* Glass border (white with opacity) */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(262 80% 60%), hsl(225 80% 65%));
+    --gradient-accent: linear-gradient(45deg, hsl(262 50% 20%), hsl(225 50% 25%));
+    --gradient-glow: radial-gradient(circle, hsl(262 80% 60% / 0.3), transparent);
+    
+    /* Shadows & Depth */
+    --shadow-glass: 0 8px 32px hsl(260 20% 5% / 0.4);
+    --shadow-glow: 0 0 40px hsl(262 80% 60% / 0.3);
+    --shadow-depth: 0 4px 20px hsl(260 20% 5% / 0.6);
+    
+    /* Layout & Spacing */
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +133,102 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    overflow: hidden; /* Prevent body scroll in IDE layout */
+  }
+
+  /* IDE Specific Base Styles */
+  .playground-layout {
+    @apply font-mono;
+  }
+
+  /* Glass Effect Utilities */
+  .glass {
+    background: hsl(var(--glass-bg) / 0.6);
+    border: 1px solid hsl(var(--glass-border) / 0.1);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-strong {
+    background: hsl(var(--glass-bg) / 0.8);
+    border: 1px solid hsl(var(--glass-border) / 0.15);
+    backdrop-filter: blur(24px);
+    box-shadow: var(--shadow-glass);
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-hover {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .glow-hover:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Code Editor Scrollbars */
+  .editor-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .editor-scrollbar::-webkit-scrollbar-track {
+    background: hsl(var(--editor-bg));
+  }
+
+  .editor-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  .editor-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+
+  /* Animation Keyframes */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Utility Classes */
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out;
   }
 }
